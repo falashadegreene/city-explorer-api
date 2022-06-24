@@ -14,23 +14,12 @@ app.use(cors());
 
 const PORT = process.env.PORT || 3002;
 //constructer
-function Forcast(weatherObject){
+function Forcast(weatherObject) {
   //constructer(weatherObject){
   this.date = weatherObject.datetime;
   this.description = weatherObject.weather.description;
   //}
 }
-
-//request and map through the data
-// app.get('/weather', (request, response) => {
-//   const searchQuery = request.query.searchQuery;
-//   console.log(searchQuery);
-//   let searchResult = weather.find(object => object.city_name.toLowerCase() === searchQuery.toLowerCase());
-//   console.log(searchResult);
-//   const result = searchResult.data.map(dayObj => new Forcast(dayObj));
-//   console.log(result);
-//   response.status(200).send(result);
-// });
 
 app.get('/weather', async (req, res) => {
 
@@ -52,16 +41,24 @@ app.get('/weather', async (req, res) => {
   }
 });
 
+app.get('/movies', async (req, res) => {
+  try {
+    let url = `https://api.themovieb.org/3/movie550?api_key=${process.env.MOVIE_API_KEY}`;
+    let movieResult = await axios.get(url);
+    res.status(200).send(movieResult.data);
+
+  }
+  catch (error) {
+    res.status(500).send(`Encountered and error: ${error.status}. ${error.message}`);
+  }
+});
 
 
 
-//app.get('*', (request, response) => {
-//response.send('Hello there!');
-//});
 
-//class Weather  {
-//constructor()
-//}
+
+
+
 
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
