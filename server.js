@@ -7,6 +7,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const axios = require('axios');
+//const { response } = require('express');
 //const weather = require('./data/weather.json');
 app.use(cors());
 
@@ -28,11 +29,11 @@ app.get('/weather', async (req, res) => {
     let lat = req.query.latResult;
     let lon = req.query.lonResult;
     let url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}`;
-    console.log(url);
+    //console.log(url);
     let results = await axios.get(url);
-    console.log(results);
+    //console.log(results);
     let weatherResults = results.data.data.map(dayObj => new Forcast(dayObj));
-    console.log(weatherResults);
+    //console.log(weatherResults);
     res.send(weatherResults);
 
   } catch (error) {
@@ -43,17 +44,28 @@ app.get('/weather', async (req, res) => {
 
 app.get('/movies', async (req, res) => {
   try {
-    let url = `https://api.themovieb.org/3/movie550?api_key=${process.env.MOVIE_API_KEY}`;
+    let searchQuery = req.query.searchQuery;
+    let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchQuery}`;
+    console.log(url);
     let movieResult = await axios.get(url);
+    console.log(movieResult.data.results);
+    let movieArray = movieResult.data.results.map(movie => new Movie(movie));
+    console.log(movieArray[0].title);
+    //res.send('hello');
     res.status(200).send(movieResult.data);
 
   }
   catch (error) {
-    res.status(500).send(`Encountered and error: ${error.status}. ${error.message}`);
+    res.status(500).send(`uh oh! error: ${error.status}. ${error.message}`);
   }
 });
 
-
+class Movie {
+  constructor(movieObj){
+    this.title = movieObj.title;
+    this.desciption = movieObj.overview;
+  }
+}
 
 
 
