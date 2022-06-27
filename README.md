@@ -6,7 +6,7 @@ Estimate of time needed to complete: __2hours___
 
 Start time: __4:30pm EST__Wednesday_
 
-Finish time: Wednesday_12:00pmEST____
+Finish time: Sunder_8:00pmEST____
 
 Actual time needed to complete: __4 days__
 
