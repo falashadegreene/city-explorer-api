@@ -1,14 +1,14 @@
 # city-explorer-api
 
-Name of feature: _________City Explore backend weather API______________________
+Name of feature: _________City Explore backend Movie API______________________
 
 Estimate of time needed to complete: __2hours___
 
-Start time: __4:30pm EST__Tuesday_
+Start time: __4:30pm EST__Wednesday_
 
 Finish time: Wednesday_12:00pmEST____
 
-Actual time needed to complete: __1 day___
+Actual time needed to complete: __4 days__
 
 - collaborators: Stephanie Hill
 - collaboratos: Eliane Huynh
