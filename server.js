@@ -1,37 +1,36 @@
 'use strict';
 
 
-
+// Requirements
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
+//const axios = require('axios');
 
-//const { response } = require('express');
-//const weather = require('./data/weather.json');
+// Require Modules
 const getMovies = require('./modules/movies.js');
 const getWeather = require('./modules/weather.js');
 
+// USE
 app.use(cors());
-
-
-
 const PORT = process.env.PORT || 3002;
-//constructer
 
+// Proof of life Test
+app.get('/', (req, res) => {
+  res.status(200).send('Hello!!');
+});
+
+// Route weather
 app.get('/weather', getWeather);
-
-
-
+// Route movies
 app.get('/movies', getMovies);
 
 
-
-
-
-//function getMovies(req, res)
-
-
+//error message
+app.get('*', (req, res) => {
+  res.status.send('Sorry not working!');
+});
 
 
 
